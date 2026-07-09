@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CONNECT PRO | Videollamada Premium</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+    <div class="lobby-container" id="lobby-panel">
+        
+        <div class="lobby-sidebar-showcase">
+            <div class="showcase-overlay">
+                <div class="corporate-logo">CP</div>
+                <h1>CONNECT PRO <span>| ENTER REUNION</span></h1>
+                <p>Ingresa tus credenciales para unirte a la reunión segura.</p>
+            </div>
+        </div>
+
+        <div class="lobby-form-side">
+            <div class="lobby-panel-content">
+                <div class="panel-header">
+                    <h2>ACCESO A LA REUNIÓN</h2>
+                </div>
+                
+                <div class="form-body">
+                    <div class="input-group">
+                        <label for="username">Ingresa tu nombre...</label>
+                        <input id="username" placeholder="p.ej., Juan Pérez" autocomplete="off">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="room-code-input">Código de la sala (ROOM-XXXX)</label>
+                        <input id="room-code-input" placeholder="Ej: ROOM-B6C8" autocomplete="off">
+                    </div>
+                    
+                    <div class="lobby-buttons-stack">
+                        <button id="btn-create-room" class="action-btn-main btn-primary">
+                            <span>+</span> Crear Nueva Sala
+                        </button>
+                        <button id="btn-request-join" class="action-btn-main btn-secondary">
+                            <span>→</span> Unirse a Sala
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="lobby-footer">
+                <span>Soporte CONNECT PRO</span> · <a href="#">Ayuda</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="waiting-screen" class="waiting-container" style="display: none;">
+        <div class="spinner"></div>
+        <h3>Esperando aprobación del administrador...</h3>
+        <p>El creador de la sala está revisando tu solicitud de acceso.</p>
+    </div>
+
+    <div id="room-info-bar" class="room-info-bar" style="display: none;">
+        <span>Código de la Sala: <strong id="active-room-code">-------</strong></span>
+        <span id="admin-badge" class="badge" style="display: none;">ADMINISTRADOR</span>
+    </div>
+
+    <div class="main-grid-container" id="main-conference-area" style="display: none;">
+        <div id="video-wrapper">
+            <div id="admin-notifications-panel" class="admin-notifications" style="display: none;">
+                <h4>Solicitudes de ingreso pendientes</h4>
+                <div id="requests-list"></div>
+            </div>
+
+            <div id="video-container">
+                <div class="video-slot" id="local-video-slot">
+                    <video id="local-video" autoplay playsinline></video>
+                    <div class="video-overlay-name" id="local-name-tag">Tú</div>
+                </div>
+            </div>
+
+<div class="media-controls">
+    <button id="btn-toggle-audio" class="control-btn">Audio Mute</button>
+    <button id="btn-toggle-video" class="control-btn">Video Off</button>
+    <button id="btn-leave-room" class="control-btn btn-danger-action">Salir de la reunión</button>
+</div>
+        </div>
+
+        <div id="chat" style="display: none;">
+            <div class="chat-header">
+                <h3>CHAT EN VIVO</h3>
+            </div>
+            <div id="messages">
+                <ul id="message-list"></ul>
+            </div>
+            <div class="emoji-bar">
+                <button type="button" onclick="insertEmoji('👍')">👍</button>
+                <button type="button" onclick="insertEmoji('❤️')">❤️</button>
+                <button type="button" onclick="insertEmoji('😂')">😂</button>
+                <button type="button" onclick="insertEmoji('😮')">😮</button>
+                <button type="button" onclick="insertEmoji('👏')">👏</button>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="msg" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-send-msg">Enviar</button> 
+            </div>
+            <button id="btn-share-screen">Share Screen</button>
+        </div>
+    </div>
+
+    <script>
+        function insertEmoji(emoji) {
+            const input = document.getElementById('msg');
+            if(input) { input.value += emoji; input.focus(); }
+        }
+    </script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
